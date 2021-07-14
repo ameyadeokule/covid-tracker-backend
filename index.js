@@ -12,7 +12,7 @@ app.get('/api/states', async (req, res) => {
 		const response = await axios.get(
 			'https://disease.sh/v3/covid-19/states',
 		)
-		const newData = response.data.map((state) => ({
+		const newResponse = response.data.map((state) => ({
 			name: state.state,
 			positiveCases: state.cases,
 			totalTestResults: state.tests,
@@ -21,7 +21,7 @@ app.get('/api/states', async (req, res) => {
 				testsPerOneMillion: state.testsPerOneMillion,
 			},
 		}))
-		return res.json(newData)
+		return res.json(newResponse)
 	} catch (e) {
 		return res.json({ error: e })
 	}
